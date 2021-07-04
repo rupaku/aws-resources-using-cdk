@@ -28,6 +28,10 @@ class CdkworkshopStack(core.Stack):
         )
 
         my_api = _apigateway.LambdaRestApi(self,id='lambdaapi',rest_api_name='cdkapi',handler=my_lambda)
+        #Add methods
+        music = my_api.root.add_resource('music')
+        music.add_method('GET') 
+        music.add_method("DELETE", _apigateway.HttpIntegration("http://aws.amazon.com"))
 
 
 
